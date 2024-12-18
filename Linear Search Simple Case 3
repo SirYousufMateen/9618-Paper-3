@@ -1,0 +1,23 @@
+#In this linear search algorithm, I have used only for loop to search the user input, and then print array location(index) value appeared in the array.  
+
+DECLARE arrayData : ARRAY [1:10] OF INTEGER
+DECLARE count, searchvalue, location : INTEGER
+DECLARE found : BOOLEAN
+
+arrayData = [10,4,5,6,7,8,3,2,1,99]
+found <-- FALSE
+location <-- 0
+
+OUTPUT "Enter a value you want to search"
+INPUT searchvalue
+FOR count = 1 TO 10
+  IF searchvalue = arrayData[count]
+  THEN found <-- TRUE
+       location = count
+  ENDIF
+NEXT
+
+IF found
+THEN OUTPUT "Value has been found at location", location
+ELSE OUTPUT "Value has not been found"
+ENDIF
