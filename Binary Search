@@ -1,0 +1,26 @@
+DECLARE MyList: ARRAY[14,18,20,31,64,73,96,101,102,104] OF INTEGER
+DECLARE low, high, mid, search : INTEGER
+DECLARE found: BOOLEAN 
+found <-- FALSE
+low <-- 1
+hihgh <-- 10
+
+OUTPUT "Enter a value you want to search"
+INPUT search
+
+WHILE found = FALSE AND low <= high DO
+  mid <-- (low + high) DIV 2
+  IF search = MyList[mid]
+  THEN found <-- TRUE
+  ELSE
+      IF search > MyList[mid]
+      THEN low <-- mid + 1
+      ELSE
+          high <-- mid - 1
+      ENDIF
+  ENDIF
+ENDWHILE
+IF found
+THEN OUTUT "Value found"
+ELSE OUTPUT "Value not found"
+ENDIF
