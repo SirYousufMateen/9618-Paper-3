@@ -1,0 +1,23 @@
+#In this linear search algorithm, I have used REPEAT loop to perform efficient algorithm. Loop will be terminated when value found. 
+
+DECLARE arrayData : ARRAY [1:10] OF INTEGER
+DECLARE count, searchvalue : INTEGER
+DECLARE found : BOOLEAN
+
+arrayData = [10,4,5,6,7,8,3,2,1,99]
+found <-- FALSE
+count <-- 1
+
+OUTPUT "Enter a value you want to search"
+INPUT searchvalue
+REPEAT
+  IF searchvalue = arrayData[count]
+  THEN found <-- TRUE
+  ENDIF
+  count <-- Count + 1
+UNTIL found = FALSE OR count > 10
+
+IF found
+THEN OUTPUT "Value has been found"
+ELSE OUTPUT "Value has not been found"
+ENDIF
