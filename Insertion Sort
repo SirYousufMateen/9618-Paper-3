@@ -1,0 +1,13 @@
+DECLARE Pointer, MAX, ItemToInsert, CurrentItem : INTEGER
+DECLARE Numbers : ARRAY [10,4,5,6,7,8,3,2,1,99] OF INTEGER
+MAX = 10
+
+FOR Pointer <-- 2 TO MAX
+  ItemToInsert <-- Numbers[Pointers]
+  CurrentItem <-- Pointer
+  WHILE (CurrentItem > 1) AND (Numbers[CurrentItem - 1]>ItemToInsert) Do
+    Numbers[CurrentItem] <-- Numbers[CurrentItem - 1]
+    CurrentItem <-- CurrentItem - 1
+  ENDWHILE 
+Numbers[CurrentItem] <-- ItemToInsert
+NEXT
