@@ -1,9 +1,10 @@
-DECLARE MyList: ARRAY[14,18,20,31,64,73,96,101,102,104] OF INTEGER
+DECLARE MyList: ARRAY[1:10] OF INTEGER
+MyList ← [14,18,20,31,64,73,96,101,102,104]
 DECLARE low, high, mid, search : INTEGER
 DECLARE found: BOOLEAN 
 found <-- FALSE
 low <-- 1
-hihgh <-- 10
+high <-- 10
 
 OUTPUT "Enter a value you want to search"
 INPUT search
@@ -21,6 +22,6 @@ WHILE found = FALSE AND low <= high DO
   ENDIF
 ENDWHILE
 IF found
-THEN OUTUT "Value found"
+THEN OUTPUT "Value found"
 ELSE OUTPUT "Value not found"
 ENDIF
