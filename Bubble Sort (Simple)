@@ -1,12 +1,17 @@
 DECLARE COUNT, COUNTER, temp : INTEGER
-DECLARE arrayData : ARRAY [10,4,5,6,7,8,3,2,1,99] OF INTEGER
+DECLARE arrayData : ARRAY [1:10] OF INTEGER
 
-FOR COUNT = 1 TO 9
-  FOR COUNTER = 1 TO 9
-    IF arrayData[COUNTER] < arrayData[COUNTER+1]
-    THEN temp =  arrayData[COUNTER+1]
-         arrayData[COUNTER+1] = arrayData[COUNTER]
-         arrayData[COUNTER] = temp
+arrayData ← [10,4,5,6,7,8,3,2,1,99]
+FOR COUNT ← 1 TO 9
+  FOR COUNTER ← 1 TO 9
+    IF arrayData[COUNTER] > arrayData[COUNTER+1]
+    THEN temp ←  arrayData[COUNTER+1]
+         arrayData[COUNTER+1] ← arrayData[COUNTER]
+         arrayData[COUNTER] ← temp
     ENDIF
-  NEXT
-NEXT
+  NEXT COUNTER
+NEXT COUNT
+
+FOR COUNT ← 1 TO 10 
+OUTPUT arrayData[COUNT]
+NEXT COUNT
