@@ -1,0 +1,62 @@
+//Circular Queue using PROCEDURE and BYREF.
+DECLARE QueueArrray : ARRAY[1:8] OF INTEGER
+DECLARE Start, End, QSIZE, count : INTEGER
+Start ← 1
+End ← 1
+QSIZE ← 0
+PROCEDURE Enqueue(BYREF QueueArrray:ARRAY OF INTEGER,BYREF End: INTEGER,BYREF QSIZE : INTEGER,BYVAL Value : INTEGER)
+IF QSIZE = 8
+THEN OUTPUT "Queue is full"
+ELSE 
+     IF  End = 9 AND QSIZE < 8
+     THEN End ← 1
+          QueueArrray[End] ← Value
+          QSIZE ← QSIZE + 1
+          End ← End + 1
+     ELSE QueueArrray[End] ← Value
+          QSIZE ← QSIZE + 1
+          End ← End + 1
+     ENDIF
+ENDIF
+ENDPROCEDURE
+
+PROCEDURE Dequeue(BYREF QueueArrray:ARRAY OF INTEGER,BYREF Start: INTEGER,BYREF QSIZE : INTEGER)
+IF QSIZE = 0
+THEN OUTPUT "Queue is empty"
+ELSE 
+     IF  Start = 9 AND QSIZE < 8
+     THEN Start ← 1
+          QueueArrray[Start] ← 0
+          QSIZE ← QSIZE - 1
+          Start ← Start + 1
+     ELSE QueueArrray[Start] ← 0
+          QSIZE ← QSIZE - 1
+          Start ← Start + 1
+     ENDIF
+ENDIF
+ENDPROCEDURE
+
+
+FOR count ← 1 TO 8
+CALL Enqueue(QueueArrray,End,QSIZE, 15)
+NEXT count
+
+FOR count ← 1 TO 8
+OUTPUT count," = ", QueueArrray[count]
+NEXT count
+
+CALL Dequeue(QueueArrray,Start,QSIZE)
+
+FOR count ← 1 TO 8
+OUTPUT count," = ", QueueArrray[count]
+NEXT count
+
+CALL Enqueue(QueueArrray,End,QSIZE, 25)
+
+FOR count ← 1 TO 8
+OUTPUT count," = ", QueueArrray[count]
+NEXT count
+
+FOR count ← 1 TO 9
+CALL Dequeue(QueueArrray,Start,QSIZE)
+NEXT count
