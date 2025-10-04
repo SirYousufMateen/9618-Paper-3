@@ -1,13 +1,25 @@
+DECLARE Numbers: ARRAY[1: 10] OF INTEGER
 DECLARE Pointer, MAX, ItemToInsert, CurrentItem : INTEGER
-DECLARE Numbers : ARRAY [10,4,5,6,7,8,3,2,1,99] OF INTEGER
-MAX = 10
+Numbers ← [10,4,5,6,7,8,3,2,1,9]
+MAX ← 10
+
+OUTPUT "Before sorting"
+FOR count ← 1 TO 10
+OUTPUT Numbers[count]
+NEXT count
+
 
 FOR Pointer <-- 2 TO MAX
-  ItemToInsert <-- Numbers[Pointers]
+  ItemToInsert <-- Numbers[Pointer]
   CurrentItem <-- Pointer
-  WHILE (CurrentItem > 1) AND (Numbers[CurrentItem - 1]>ItemToInsert) Do
+  WHILE (CurrentItem > 1) AND (Numbers[CurrentItem - 1]>ItemToInsert) 
     Numbers[CurrentItem] <-- Numbers[CurrentItem - 1]
     CurrentItem <-- CurrentItem - 1
   ENDWHILE 
 Numbers[CurrentItem] <-- ItemToInsert
-NEXT
+NEXT Pointer
+
+OUTPUT "Afer sorting"
+FOR count ← 1 TO 10
+OUTPUT Numbers[count]
+NEXT count
