@@ -1,0 +1,44 @@
+DECLARE MyList: ARRAY[0:9]  OF INTEGER
+DECLARE Top,Item : INTEGER
+DECLARE count : INTEGER
+MyList ← [0,0,0,0,0,0,0,0,0,0]
+Top ← -1
+PROCEDURE Push(Item : INTEGER ,BYREF Top: INTEGER,BYREF MyList : ARRAY OF INTEGER)
+IF Top = 9
+THEN OUTPUT "Stack is overflow"
+ELSE Top ← Top + 1
+     MyList[Top]← Item
+ENDIF
+ENDPROCEDURE
+
+PROCEDURE POP(BYREF Top: INTEGER,BYREF MyList : ARRAY OF INTEGER)
+IF Top = -1
+THEN OUTPUT "Stack is empty"
+ELSE 
+    MyList[Top] ← 0
+    Top ← Top - 1
+ENDIF
+ENDPROCEDURE
+
+
+CALL Push(4,Top, MyList)
+CALL Push(5,Top, MyList)
+CALL Push(6,Top, MyList)
+CALL Push(7,Top, MyList)
+
+OUTPUT "After Push method"
+FOR count ← 0 TO 9
+OUTPUT MyList[count]
+NEXT count 
+
+
+CALL POP(Top, MyList)
+CALL POP(Top, MyList)
+CALL POP(Top, MyList)
+CALL POP(Top, MyList)
+CALL POP(Top, MyList)
+
+OUTPUT "After Pop method"
+FOR count ← 0 TO 9
+OUTPUT MyList[count]
+NEXT count 
