@@ -1,0 +1,41 @@
+//Simple Queue using PROCEDURE and BYREF.
+DECLARE QueueArrray : ARRAY[1:8] OF INTEGER
+DECLARE Start, End, count : INTEGER
+Start ← 1
+End ← 1
+QueueArrray ← [0,0,0,0,0,0,0,0]
+PROCEDURE Enqueue(BYREF QueueArrray:ARRAY OF INTEGER,BYREF End: INTEGER,BYVAL Value : INTEGER)
+IF End = 9
+THEN OUTPUT "Queue is full"
+ELSE 
+    QueueArrray[End] ← Value
+    End ← End + 1
+
+ENDIF
+ENDPROCEDURE
+
+PROCEDURE Dequeue(BYREF QueueArrray:ARRAY OF INTEGER,BYREF Start: INTEGER)
+IF Start >= End
+THEN OUTPUT "Queue is empty"
+ELSE 
+    QueueArrray[Start] ← 0
+    Start ← Start + 1
+ENDIF
+ENDPROCEDURE
+
+FOR count ← 1 TO 8
+CALL Enqueue(QueueArrray,End, 15)
+NEXT count
+
+CALL Dequeue(QueueArrray,Start)
+CALL Dequeue(QueueArrray,Start)
+CALL Dequeue(QueueArrray,Start)
+CALL Dequeue(QueueArrray,Start)
+CALL Dequeue(QueueArrray,Start)
+CALL Dequeue(QueueArrray,Start)
+CALL Dequeue(QueueArrray,Start)
+CALL Dequeue(QueueArrray,Start)
+
+FOR count ← 1 TO 8
+OUTPUT QueueArrray[count]
+NEXT count
