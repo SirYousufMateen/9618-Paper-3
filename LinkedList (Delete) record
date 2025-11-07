@@ -1,0 +1,64 @@
+//Linked List Delete Data by using Record Datatype. 
+TYPE RLinkedList
+DECLARE Data : CHAR
+DECLARE Pointer : INTEGER
+ENDTYPE
+DECLARE LinkedList : ARRAY[1:3] OF RLinkedList
+DECLARE count,inputpointer , StartPointer: INTEGER
+DECLARE inputdata : CHAR
+StartPointer ← 1
+FOR count ← 1 TO 3 
+OUTPUT "Enter data"
+INPUT inputdata
+OUTPUT "Enter pointer"
+INPUT inputpointer
+LinkedList[count].Data ← inputdata
+LinkedList[count].Pointer ← inputpointer
+NEXT count
+
+OUTPUT "Start Pointer = ",StartPointer
+FOR count ← 1 TO 3 
+OUTPUT "Data = ",LinkedList[count].Data,", Pointer =" ,LinkedList[count].Pointer 
+NEXT count
+
+FUNCTION DeleteNode(NodeData : CHAR) RETURNS BOOLEAN
+DECLARE CurrentPointer,PreviousPointer : INTEGER
+    IF StartPointer = -1 THEN
+        RETURN FALSE
+    ELSE
+        CurrentPointer ← StartPointer
+
+        // Case 1: Node to delete is the first node
+        IF LinkedList[CurrentPointer].Data = NodeData THEN
+            StartPointer ← LinkedList[CurrentPointer].Pointer
+            RETURN TRUE
+        ELSE
+            PreviousPointer ← CurrentPointer
+            CurrentPointer ← LinkedList[CurrentPointer].Pointer
+
+            // Traverse list to find node
+            WHILE CurrentPointer <> -1 AND LinkedList[CurrentPointer].Data <> NodeData
+                PreviousPointer ← CurrentPointer
+                CurrentPointer ← LinkedList[CurrentPointer].Pointer
+            ENDWHILE
+
+            // Case 2: Node not found
+            IF CurrentPointer = -1 THEN
+                RETURN FALSE
+            ELSE
+                // Case 3: Node found in middle or end
+                LinkedList[PreviousPointer].Pointer ← LinkedList[CurrentPointer].Pointer
+                LinkedList[CurrentPointer].Pointer ← -1
+                RETURN TRUE
+            ENDIF
+        ENDIF
+    ENDIF
+ENDFUNCTION
+
+OUTPUT DeleteNode('B')
+
+OUTPUT "Start Pointer = ",StartPointer
+FOR count ← 1 TO 3 
+OUTPUT "Data = ",LinkedList[count].Data,", Pointer =" ,LinkedList[count].Pointer 
+NEXT count
+
