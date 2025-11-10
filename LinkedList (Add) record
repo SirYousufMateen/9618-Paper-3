@@ -1,0 +1,48 @@
+// Linked List Add and Delete Data by using Record Datatype
+
+TYPE RLinkedList
+    DECLARE Data : CHAR
+    DECLARE Pointer : INTEGER
+ENDTYPE
+
+DECLARE LinkedList : ARRAY[1:10] OF RLinkedList
+DECLARE count, inputpointer, StartPointer, FreePointer : INTEGER
+DECLARE inputdata : CHAR
+
+// Initialize
+StartPointer ← -1
+FreePointer ← 1
+
+// Function to Add Node
+FUNCTION AddNode(NewData : CHAR) RETURNS BOOLEAN
+    DECLARE NewNodePointer, CurrentPointer : INTEGER
+
+    // Check if space available
+    IF FreePointer > 10 THEN
+        OUTPUT "No space left in the linked list."
+        RETURN FALSE
+    ENDIF
+
+    // Assign new node
+    NewNodePointer ← FreePointer
+    LinkedList[NewNodePointer].Data ← NewData
+    LinkedList[NewNodePointer].Pointer ← -1
+
+    // Update FreePointer to next free location
+    FreePointer ← FreePointer + 1
+
+    // Case 1: Empty list
+    IF StartPointer = -1 THEN
+        StartPointer ← NewNodePointer
+        RETURN TRUE
+    ELSE
+        // Case 2: Traverse to end of list
+        CurrentPointer ← StartPointer
+        WHILE LinkedList[CurrentPointer].Pointer <> -1
+            CurrentPointer ← LinkedList[CurrentPointer].Pointer
+        ENDWHILE
+        // Link new node
+        LinkedList[CurrentPointer].Pointer ← NewNodePointer
+        RETURN TRUE
+    ENDIF
+ENDFUNCTION
